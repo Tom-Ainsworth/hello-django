@@ -1,4 +1,3 @@
-from unicodedata import name
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Item
 from .forms import ItemForm
@@ -17,9 +16,7 @@ def add_item(request):
             form.save()
             return redirect("get_todo_list")
     form = ItemForm()
-    context = {
-        "form": form
-        }
+    context = {"form": form}
     return render(request, "todo/add_item.html", context)
 
 
@@ -31,7 +28,19 @@ def edit_item(request, item_id):
             form.save()
             return redirect("get_todo_list")
     form = ItemForm(instance=item)
-    context = {
-        "form": form
-    }
-    return render(request, 'todo/edit_item.html', context)
+    context = {"form": form}
+    return render(request, "todo/edit_item.html", context)
+
+
+def toggle_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    item.done = not item.done
+    item.save()
+    return redirect("get_todo_list")
+
+
+def delete_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    item.done = not item.done
+    item.delete()
+    return redirect("get_todo_list")
