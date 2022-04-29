@@ -39,3 +39,10 @@ class TestViews(TestCase):
         self.assertRedirects(response, '/')
         update_item = Item.objects.get(id=item.id)
         self.assertFalse(update_item.done)
+        
+    def test_can_edit_item(self):
+        item = Item.objects.create(name="Test Todo Item") # create a dummy item in the Item model (import from .models at the top)
+        response = self.client.post(f"/edit/{item.id}", {'name': 'Updated Name'})
+        self.assertRedirects(response, '/') # test the returned url. Usually associated to task, but here it's a new one.
+        update_item = Item.objects.get(id=item.id)
+        self.assertEqual(update_item.name, 'Updated Name')
