@@ -1,10 +1,37 @@
+# Data files
+*.sqlite3
+
+# Dev environment
+.DS_Store
+.github/
+scratch/
+scratch.md
+*.swp
+temp/
+tmp/
+
+# Node.js
+node_modules/
+package-lock.json
+
+# Other
 core.Microsoft*
 core.mongo*
 core.python*
+creds.json
+
+# Python
+.env
+env
+env.py
 __pycache__/
 *.py[cod]
-node_modules/
-.github/
-cloudinary_python.txt
-django_todo/.env/
-*.sqlite3
+.venv/
+venv/
+
+# Testing
+.coverage
+htmlcov
+
+# VS Code
+.vscode/
