@@ -6,5 +6,5 @@ __pycache__/
 node_modules/
 .github/
 cloudinary_python.txt
-django_todo/.env
+django_todo/.env/
 *.sqlite3
